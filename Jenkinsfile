@@ -1,12 +1,17 @@
 pipeline {
   agent any
+   tools {
+    maven 'maven3'
+  }
   stages {
     stage('Tests tools') {
       parallel {
         stage('Tests tools') {
           steps {
-            sh '''mvn --version
-git --version'''
+			java 'version
+            sh '''java --version
+			mvn --version
+			git --version'''
           }
         }
 
