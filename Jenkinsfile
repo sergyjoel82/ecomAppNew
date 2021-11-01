@@ -8,7 +8,7 @@ pipeline {
       parallel {
         stage('Tests tools') {
           steps {
-			java 'version
+			
             sh '''java --version
 			mvn --version
 			git --version'''
