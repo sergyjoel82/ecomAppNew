@@ -29,12 +29,19 @@ pipeline {
         sh 'mvn clean compile test package'
       }
     }
-
-    stage('Post Build steps') {
+   
+    stage ("Dynamic Analysis - DAST with OWASP ZAP") {
       steps {
-        writeFile(file: 'status.txt', text: 'hey it worked')
-      }
+	    sh "docker run -t owasp/zap2docker-stable zap-baseline.py -t http://localhost:8082 || true"
+	  }
+		
+	}
+    stage('Post Build steps') {
+        steps {
+          writeFile(file: 'status.txt', text: 'hey it worked')
+        }
     }
-
+	
   }
+  
 }
